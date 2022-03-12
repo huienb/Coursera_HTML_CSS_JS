@@ -1,0 +1,88 @@
+/*general*/
+body{
+    font-size: 16px;
+    clear: both;
+    font-family: sans-serif;
+    background-color: #e0e2ee;
+}
+
+/*navbar*/
+#header-nav{
+    background-color: #3d6d79;
+    border: 0;
+}
+.navbar-brand{
+    padding: 20px 15px 20px 15px;
+}
+.navbar-brand h1{
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2.5em;
+    color: #faf9f4;
+}
+#nav-detail {
+    background-color:#3d6d79;
+    padding-bottom: 10px;
+    border-top: 2px solid #e0e2ee;
+}
+#nav-detail div{
+    text-transform: uppercase;
+    text-align: center;
+    color: #faf9f4;
+    font-size: 1.2em;
+}
+
+/*title*/
+#title{
+    font-size: 2em;
+    font-family: cursive;
+    margin: 30px auto 20px auto;
+}
+
+/*main-content*/
+#first, #second, #third{
+    margin: 20px;
+    position: relative;
+    text-align: justify;
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+    background-color: #d69d66;
+    padding: 20px;
+    border: 3px solid black;
+   
+}
+.sub-title{
+    background-color: #3d6d79;
+    width: 25%;
+    height: 40px;
+    text-align: center;
+    color: #d69d66;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: -20px;
+    padding: 10px;
+}
+#first div, #second div, #third div{
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+/*large screen
+@media(min-width:992px)
+{
+    
+}
+
+medium screen
+@media(min-width:768px) and (max-width: 991ps)
+{
+  
+}
+
+small screen
+@media(max-width:767px)
+{
+    
+}
+*/
