@@ -1,1 +1,3 @@
-# Coursera_HTML_CSS_JS
+# Restaurant page
+
+According to Coursera 
