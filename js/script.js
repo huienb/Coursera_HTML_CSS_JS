@@ -15,13 +15,13 @@ $(function (){ //same as document.addEventListener("DOMContentLoaded")...
 
 (function (global) {
     var dc = {};
-    var homeHtmlUrl = "/modul5/restaurant-page/snippets/home-snippet.html";
+    var homeHtmlUrl = "/snippets/home-snippet.html";
     var allCategoriesUrl = "https://davids-restaurant.herokuapp.com/categories.json";
-    var categoriesTitleHtml = "/modul5/restaurant-page/snippets/category-title-snippet.html";
-    var categoryHtml = "/modul5/restaurant-page/snippets/category-snippet.html";
+    var categoriesTitleHtml = "/snippets/category-title-snippet.html";
+    var categoryHtml = "/snippets/category-snippet.html";
     var menuItemsUrl = "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
-    var menuItemsTitleHtml = "/modul5/restaurant-page/snippets/menu-items-title.html";
-    var menuItemHtml = "/modul5/restaurant-page/snippets/menu-item.html";
+    var menuItemsTitleHtml = "/snippets/menu-items-title.html";
+    var menuItemHtml = "/snippets/menu-item.html";
 
     //Convinience function for inserting innerHTML for 'select'
     var insertHtml = function (selector, html) {
@@ -62,7 +62,7 @@ $(function (){ //same as document.addEventListener("DOMContentLoaded")...
     document.addEventListener("DOMContentLoaded", function (event) {
 
         //On first load, show home view
-        // showLoading("#main-content");
+        showLoading("#main-content");
         // $ajaxUtils.sendGetRequest(homeHtml, 
         //     function (responseText){
         //         document.querySelector("#main-content").innerHTML = responseText;
@@ -71,29 +71,6 @@ $(function (){ //same as document.addEventListener("DOMContentLoaded")...
 
         // Build special area in homepage by choose random category
         $ajaxUtils.sendGetRequest(allCategoriesUrl, buildAndShowHomeHTML, true); 
-
-        //Build HTML for the homepage based on categories array returned from the server
-        function buildAndShowHomeHTML (categories) {
-            //Load home snippet page
-            $ajaxUtils.sendGetRequest(homeHtmlUrl, 
-                function(homeHtml){
-                    categories = chooseRandomCategories(allCategoriesUrl);
-                    var choosenCategoryShortName = categories.short_name;
-                    choosenCategoryShortName = "'" + choosenCategoryShortName + "'";
-                    var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", choosenCategoryShortName);
-                    insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
-                },
-                false);
-        }
-
-        // Given array of category objects, returns a random category object.
-        function chooseRandomCategories (categories) {
-            // Choose a random index into the array (from 0 inclusively until array length (exclusively))
-            var randomArrayIndex = Math.floor(Math.random() * categories.length);
-        
-            // return category object with that randomArrayIndex
-            return categories[randomArrayIndex];
-        }
 
         //Load the menu categories view
         dc.loadMenuCategories = function () {
@@ -107,6 +84,29 @@ $(function (){ //same as document.addEventListener("DOMContentLoaded")...
             $ajaxUtils.sendGetRequest (menuItemsUrl + categoryShort, buildAndShowMenuItemsHTML);
         };
     });
+
+    //Build HTML for the homepage based on categories array returned from the server
+    function buildAndShowHomeHTML (categories) {
+        //Load home snippet page
+        $ajaxUtils.sendGetRequest(homeHtmlUrl, 
+            function(homeHtml){
+                categories = chooseRandomCategories(allCategoriesUrl);
+                var choosenCategoryShortName = categories.short_name;
+                choosenCategoryShortName = "'" + choosenCategoryShortName + "'";
+                var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", choosenCategoryShortName);
+                insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
+            },
+            false);
+    }
+
+    // Given array of category objects, returns a random category object.
+    function chooseRandomCategories (categories) {
+        // Choose a random index into the array (from 0 inclusively until array length (exclusively))
+        var randomArrayIndex = Math.floor(Math.random() * categories.length);
+    
+        // return category object with that randomArrayIndex
+        return categories[randomArrayIndex];
+    }
 
     //Build HTML for the categories page based on the data from the server
     function buildAndShowCategoriesHTML (categories) {
